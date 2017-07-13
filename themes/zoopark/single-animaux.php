@@ -1,16 +1,17 @@
-       <?php get_header();?>
-       <!-- archive animaux -->
-	   <div >
+<?php get_header();?>
+<!-- Single-->
+	<div >
 
-	   
-       <h2>Les animaux</h2>
 		<?php if(have_posts): 
 		while(have_posts()): the_post();?>
 		
 		<article class="article">
 
 			<div class="container">
-				<h3 ><a href="<?php the_permalink();?>" class="orange-text"><?php the_title();?></a></h3>
+				<div>
+					<h3 class="orange-text"><?php the_title();?></h3>
+				</div>
+				
 				<div class="row">
 					<?php the_content();?>
 				</div>
@@ -24,7 +25,4 @@
 		<p>Il n'y a pas d'article pour le moment</p>
 		<?php endif;?>
 		</div>
-
-          <?php get_footer();?>
-
-
+<?php get_footer();?>

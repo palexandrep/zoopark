@@ -22,12 +22,21 @@
           
         </div>
         <div class="col l3 m6 s12">
+          <?php 
+                    $args = array(
+                        'post_type'=> 'activites',
+                        'post_status' => 'publish',
+                        'posts_per_page' => 4
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): ?>
           <h3 class="white-text">Activités</h3>
           <ul class="footer-links">
-            <li><a href="#!">Visites des jardins</a></li>
-            <li><a href="#!">Le parcours dans les arbres</a></li>
-            <li><a href="#!">Balades sous les serres</a></li>
-            <li><a href="#!">Trekking Adventure</a></li>
+            
+                  <?php while($requete->have_posts()): $requete->the_post(); ?>
+            <li><a href="<?php the_permalink();?>"><?php the_title();?></a></li>
+            <?php endwhile; endif;?>
           </ul>
         </div>
         <div class="gmap col l6 m12 s12">
@@ -39,14 +48,29 @@
       <div class="access-map container">
         <div class="row">
           <div class="col s12 center">
-            <h3 class="brown-text">Adresse</h3>
+            <?php 
+                    $args = array(
+                        'post_type'=> 'info',
+                        'post_status' => 'publish',
+                        'posts_per_page' => 3
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): 
+                    while($requete->have_posts()): $requete->the_post(); ?>
+            <h3 class="brown-text"><?php the_title();?></h3>
             <p>
-              <h4><em>Gosselies</em></h4>
-              <span itemprop="streetAddress">Rue Stranard -</span>
-              <span itemprop="addressLocality">6041 Gosselies -</span>
-              (<span itemprop="addressRegion">Belgique</span>- BE)
-            </p
-            <p>E411, sortie 25 direction Bouillon sur N89, sortie km 4,7</p>
+              <h4><em>Gosselies</em>
+                    <?php if($image = get_field('logo_footer')): ?><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"><?php endif;?>
+              </h4>
+              <span itemprop="streetAddress"><?php the_field('rue');?> -</span>
+              <span itemprop="addressLocality"><?php the_field('ville');?> -</span>
+              (<span itemprop="addressRegion"><?php the_field('pays');?></span>- BE)
+            </p>
+            <p><?php the_field('info_sortie');?></p>
+            <?php endwhile; endif;
+                    wp_reset_postdata();
+                    ?>
           </div>
         </div>
       </div>

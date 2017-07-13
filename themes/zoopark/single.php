@@ -1,21 +1,29 @@
 <?php get_header();?>
 <!-- Single-->
-	<main>
-		<h2>Contenu</h2>
-		<?php if(have_posts): 
-		while(have_posts()): the_post();?>
-		
-		<article class="article">
+	<div class="container">
 
-			<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-			<div>
-				<?php the_content();?>
-				
-			</div>
-		</article>
-		<?php endwhile;?>
-		<?php else : ?>
+		<?php 
+                    $args = array(
+                        'name'=> 'horaires',
+                        'post_status' => 'publish'
+                        
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): 
+                    while($requete->have_posts()): $requete->the_post(); ?>
+          <h3 class="orange-text"><?php the_title();?></h3>
+          <h4><?php the_field('sous-titre');?></h4>
+		<h5>Printemps</h5>
+        <div id="spring" class="col s12"><p><?php the_field('printemps');?></p></div>
+		<h5>Été</h5>
+        <div id="summer" class="col s12"><p><?php the_field('ete');?></p></div>
+		<h5>Hiver</h5>
+        <div id="winter" class="col s12"><p><?php the_field('hiver');?></p></div>
+        <?php endwhile;
+        wp_reset_postdata();
+		else: ?>
 		<p>Il n'y a pas d'article pour le moment</p>
 		<?php endif;?>
-	</main>
+		</div>
 <?php get_footer();?>

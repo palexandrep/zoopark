@@ -7,17 +7,16 @@ register_nav_menu('social_nav','Menu des liens sociaux');
 
     /*** Déclaration des zones de widgets ***/
     register_sidebar(array(
-        'id'            =>  'zone_sidebar',
-        'name'          =>  'Barre latérale',
+        'id'            =>  'header_bar',
+        'name'          =>  'Search',
         'before_widget' =>  '<div id="%1$s" class="widget %2$s">',
         'after_widget'  =>  '</div>'
     ));
     
      register_sidebar(array(
         'id'            =>  'zone_footer_1',
-        'name'          =>  'Colonne gauche du footer',
-        'before_widget' =>  '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  =>  '</div>'
+        'name'          =>  'Logo du footer'
+
     ));
     
      register_sidebar(array(

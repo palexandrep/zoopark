@@ -47,8 +47,6 @@
 		        'fallback_cb' => false
 	        ));?>
           
-          
-
       <?php wp_nav_menu(array(
 			//<ul class="right hide-on-med-and-down">
 	            'container' => '',

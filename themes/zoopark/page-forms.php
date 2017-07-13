@@ -14,7 +14,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <form class="col s12">
+      <form class="col s12" method="get" action="form.php">
         <div class="row">
           <div class="input-field col s6">
             <input id="first_name" type="text" class="validate">
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="input-field col s6">
               <input type="checkbox" id="test5" />
-              <label for="test5">Je souhaite être contacter par téléphone</label>
+              <label for="test5">Je souhaite être contacté par téléphone</label>
           </div>
           <div class="input-field col s6">
             <i class="material-icons prefix">phone</i>
@@ -54,16 +54,19 @@
         </div>
         <div class="row">
           <div>
-              <input type="hidden">
-              <button>Envoyer</button>
+              <input type="hidden" id="contact_form" name="contact_form">
+              <button class="btn-large waves-effect waves-light brown lighten-1">Envoyer</button>
           </div>
         </div>
       </form>
     </div>
-  </div>
-  <div class="company section">
-    
+  </div><?php if($image = get_field('background')): ?>
+  <div class="company section" style="
+           background-image: url('<?php echo $image["url"]; ?>');">
+       <?php endif;?>
+      
     <div class="container">
+      
       <div class="row">
         <div class="col s12">
           <h3 class="white-text">ZooPark</h3>

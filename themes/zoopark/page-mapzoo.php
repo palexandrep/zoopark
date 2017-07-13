@@ -3,10 +3,6 @@
   <div class="input-field col s12">
     <select class="icons">
       <option value="" disabled selected>Choose your option</option>
-      <?php if(have_posts()): the_post(); ?>
-                <h1><?php the_title(); ?></h1>
-                <div><?php the_content(); ?></div>
-                <?php endif; ?>
       <option value="" data-icon="content/images/animals-icons/vg000.png" class="left circle">Lions</option>
       <option value="" data-icon="content/images/animals-icons/vg001.png" class="left circle">example 2</option>
       <option value="" data-icon="content/images/animals-icons/vg002.png" class="left circle">example 3</option>

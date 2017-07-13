@@ -37,10 +37,12 @@
                     
                       <div class="col s12 m4">
                         <div class="icon-block">
-                          <h2 class="center brown-text"><i class="<?php the_field('flaticon');?>">Ours</i></h2>
+                          
+                          <h2 class="center brown-text"><a href="<?php the_permalink();?>"><i class="<?php the_field('flaticon');?>"></i></a></h2>
                           <h3 class="center"><?php the_title(); ?><em>- <?php the_field('lieu_geographique');?></em></h3>
 
                           <p class="light"><?php the_field('resume');?></p>
+                         
                         </div>
                       </div>
 
@@ -87,17 +89,30 @@
     <div class="section">
       <div class="row">
         <div class="col s12 center">
-          <h3 class="orange-text">Horaires</h3>
-          <h4>Jours d'ouverture et heures d'ouverture</h4>
+          <?php 
+                    $args = array(
+                        'name'=> 'horaires',
+                        'post_status' => 'publish'
+                        
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): 
+                    while($requete->have_posts()): $requete->the_post(); ?>
+          <h3 class="orange-text"><?php the_title();?></h3>
+          <h4><?php the_field('sous-titre');?></h4>
           <ul class="tabs">
             <li class="tab col s3"><a href="#spring">Printemps</a> 3 mars au 20 juin</li>
             <li class="tab col s3"><a class="active" href="#summer">Été</a> 21 juin au 15 septembre</li>
             <li class="tab col s3"><a href="#winter">Hiver</a> 16 septembre au 4 janvier</li>
           </ul>
         </div>
-        <div id="spring" class="col s12"><p>Entre le 29 avril et le 1er octobre, le park est ouvert de 10 à 21 heures tous les samedis, dimanches, jours de vacances scolaires, jours fériés et ponts; et de 10 à 18 heures du lundi au vendredi, pendant les mois de mai, juin.</p></div>
-        <div id="summer" class="col s12"><p>Pendant les mois de juillet, août et septembre, le park est ouvert de 10 à 23 heures tous les vendredis et samedis, pour les Estivales.</p></div>
-        <div id="winter" class="col s12"><p>Du 28 octobre au 3 novembre, le park est ouvert de 10 à 21 heures, pour Halloween et quelques dates spéciales au moment des fêtes de fin d'année.</p></div>
+        <div id="spring" class="col s12"><p><?php the_field('printemps');?></p></div>
+        <div id="summer" class="col s12"><p><?php the_field('ete');?></p></div>
+        <div id="winter" class="col s12"><p><?php the_field('hiver');?></p></div>
+        <?php endwhile; endif;
+                    wp_reset_postdata();
+                    ?>
       </div>
     </div>
   </div>

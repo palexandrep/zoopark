@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 <!-- SEARCH -->
-    <main>
+
         <section>
-        <h1>Recherche</h1>
+
         <?php if(have_posts()): ?>
         <p><?php echo $wp_query->found_posts; ?> résultats pour la recherche de <em>"<?php the_search_query(); ?>"</em></p>
             <ul>
@@ -22,5 +22,5 @@
         ?>
         </section>
         <aside><?php get_sidebar(); ?></aside>
-    </main>
+
 <?php  get_footer(); ?>
