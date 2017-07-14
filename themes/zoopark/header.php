@@ -38,11 +38,12 @@
           
           <h1 class="brand"><?php bloginfo('name');?><em><?php bloginfo('description');?></em></h1>
         </a>
-
+        
         <?php wp_nav_menu(array(
 			//<ul class="right hide-on-med-and-down">
 	            'container' => '',
               'items_wrap' => '<ul id="menu-menu-superieur" class="right hide-on-med-and-down">%3$s<li><a href="#" class="material-icons">search</a><li></ul>',
+
 		        'theme_location' => 'main_nav',
 		        'fallback_cb' => false
 	        ));?>

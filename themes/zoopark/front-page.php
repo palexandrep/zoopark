@@ -10,7 +10,7 @@
         </div>
 
         <div class="row center">
-          <a href="<?php the_field('bouton'); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1">Billeterie</a>
+          <a href="<?php the_field('bouton'); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1"><?php the_field('titre_du_bouton'); ?></a>
           
         </div>
 
@@ -62,12 +62,40 @@
       <div class="section">
         <div class="row">
           <div class="col s12 center">
+          
+                    <?php 
+                    $args = array(
+                        'category_name' => 'annonces',
+                        'post_type'=> 'billeterie',
+                        'post_status' => 'publish',
 
-              <p>Achetez votre ZOOPASS et accéder à notre Parc toute l'année !</p>
-              <a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> 1jours </strong><span>28€*</span></a>
-              <a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> 1ans </strong> <span>45€*</span></a>
-              <p>*<small>Pass individuel</small></p>
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): $requete->the_post(); ?>
+              <?php if(get_field('annonce')): ?><p><?php the_field('annonce');?></p><?php endif; ?>
+              <?php endif; ?>
 
+              <?php 
+                    $args = array(
+                        'category_name' => 'pass',
+                        'post_type'=> 'billeterie',
+                        'post_status' => 'publish',
+                        'posts_per_page' => 3
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): 
+                    while($requete->have_posts()): $requete->the_post(); ?>
+              
+              <?php if(get_field('pass')): ?><a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span></a><?php endif; ?>
+              <?php endwhile; endif; wp_reset_postdata();?>
+
+              
+
+              <?php if(get_field('conditions')): ?><p>*<small><?php the_field('conditions');?></small></p><?php endif;  ?>
+              
+              
           </div>
         </div>
       </div>

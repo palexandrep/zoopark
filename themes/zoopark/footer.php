@@ -39,7 +39,7 @@
             <?php endwhile; endif;?>
           </ul>
         </div>
-        <div class="gmap col l6 m12 s12">
+        <div class="gmap col l6 m12 s12 brown lighten-1">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.610822179908!2d4.4269313158075345!3d50.46697139405523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c22f2139954003%3A0xe96185b4bd67c4d8!2sRue+Joseph+Stranard%2C+6041+Charleroi!5e0!3m2!1sfr!2sbe!4v1499847625545" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
       </div>
@@ -91,10 +91,15 @@
       </div>
     </div>
   </footer>
+
     <?php wp_footer(); ?>
       <!--  Scripts-->
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="<?php bloginfo('template_url');?>/js/materialize.js"></script>
   <script src="<?php bloginfo('template_url');?>/js/init.js"></script>
+            <script>   $(document).ready(function() {
+    $('select').material_select();
+  });</script>
 </body>
 </html>

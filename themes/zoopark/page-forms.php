@@ -6,7 +6,7 @@
         <div class="header-forms col s12 center white-text">
           <i class="material-icons">contacts</i>
           <h3>
-            Une demande particulière laissez-nous vos coordonnées.
+            <?php the_field('banniere_contact') ?>
           </h3>
         </div>
       </div>
