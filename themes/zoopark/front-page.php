@@ -10,7 +10,7 @@
         </div>
 
         <div class="row center">
-          <a href="<?php the_field('bouton'); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1"><?php the_field('titre_du_bouton'); ?></a>
+          <a href="<?php echo get_post_type_archive_link( 'billeterie' ); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1"><?php the_field('titre_du_bouton'); ?></a>
           
         </div>
 
@@ -88,7 +88,7 @@
                     if($requete->have_posts()): 
                     while($requete->have_posts()): $requete->the_post(); ?>
               
-              <?php if(get_field('pass')): ?><a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span></a><?php endif; ?>
+              <?php if(get_field('pass')): ?><a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span></a><?php endif; ?>
               <?php endwhile; endif; wp_reset_postdata();?>
 
               
