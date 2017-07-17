@@ -81,7 +81,7 @@
                         'category_name' => 'pass',
                         'post_type'=> 'billeterie',
                         'post_status' => 'publish',
-                        'posts_per_page' => 3
+                        'posts_per_page' => 2
                     );
                     $requete = new WP_Query($args);
                     
@@ -119,14 +119,14 @@
         <div class="col s12 center">
           <?php 
                     $args = array(
-                        'name'=> 'horaires',
+                        'post_type'=> 'horaires',
                         'post_status' => 'publish'
                         
                     );
                     $requete = new WP_Query($args);
                     
                     if($requete->have_posts()): 
-                    while($requete->have_posts()): $requete->the_post(); ?>
+                     $requete->the_post(); ?>
           <h3 class="orange-text"><?php the_title();?></h3>
           <h4><?php the_field('sous-titre');?></h4>
           <ul class="tabs">
@@ -138,7 +138,7 @@
         <div id="spring" class="col s12"><p><?php the_field('printemps');?></p></div>
         <div id="summer" class="col s12"><p><?php the_field('ete');?></p></div>
         <div id="winter" class="col s12"><p><?php the_field('hiver');?></p></div>
-        <?php endwhile; endif;
+        <?php  endif;
                     wp_reset_postdata();
                     ?>
       </div>

@@ -4,7 +4,7 @@
 
 		<?php 
                     $args = array(
-                        'name'=> 'horaires',
+                        'post_type'=> 'horaires',
                         'post_status' => 'publish'
                         
                     );
