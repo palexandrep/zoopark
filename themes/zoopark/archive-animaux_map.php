@@ -36,6 +36,7 @@
                     if($requete->have_posts()): $requete->the_post(); ?>
 		<?php if($image = get_field('carte')): ?>
       <div >
+        <div id="self-position"></div>
         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
       </div>
       <?php endif;?>

@@ -27,9 +27,9 @@
 
 
 // VARIABLES
-var rayon = 10;
-var etat = "offline";
-var idGare = "";
+//var rayon = 10;
+//var etat = "offline";
+//var idGare = "";
 var posLat = "";
 var posLong = "";
 var latMax = "";
@@ -80,16 +80,13 @@ function CalculCoordo (crd){
 }
 
 
-$( document ).delegate("#archive-animaux-amp", "pagecreate", function() {
+$( document ).delegate("#archive-animaux-map", "pagecreate", function() {
 
-
+		Geolocalisation();
         CalculCoordo(crd);
 
 });
 
-$( document ).delegate("#archive-animaux-amp", "pagecreate", function() {
-    Geolocalisation();
-});
 
   }); // end of document ready
   

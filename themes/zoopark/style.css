@@ -11,4 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 /*** Global ***/
 
-
+#self-position{
+    width: 14px;
+    height: 14px;
+    background-color: green;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 2;
+}

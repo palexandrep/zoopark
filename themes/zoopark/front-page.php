@@ -94,7 +94,7 @@
               
               <?php if(get_field('pass')): ?>
               <a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">
-                ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span>
+                <?php the_title();?><strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span>
               </a><?php endif; ?>
 
               <?php endwhile; endif; wp_reset_postdata();?>
