@@ -1,7 +1,7 @@
 <?php get_header();?>
 <!--Horaires-->
 	<div class="container">
-
+    
 		<?php 
                     $args = array(
                         'post_type'=> 'horaires',

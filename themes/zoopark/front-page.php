@@ -10,13 +10,17 @@
         </div>
 
         <div class="row center">
-          <a href="<?php echo get_post_type_archive_link( 'billeterie' ); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1"><?php the_field('titre_du_bouton'); ?></a>
+          <a href="<?php echo get_post_type_archive_link( 'billeterie' ); ?>" id="download-button" class="btn-large waves-effect waves-light brown lighten-1">
+          <?php the_field('titre_du_bouton'); ?></a>
           
         </div>
 
       </div>
     </div>
-      <?php if($image = get_field('banner_1')): ?><div class="parallax"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></div><?php endif;?>
+      <?php if($image = get_field('banner_1')): ?>
+      <div class="parallax">
+        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+      </div><?php endif;?>
   </div>
 
   <!-- animaux promote-->
@@ -88,13 +92,23 @@
                     if($requete->have_posts()): 
                     while($requete->have_posts()): $requete->the_post(); ?>
               
-              <?php if(get_field('pass')): ?><a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span></a><?php endif; ?>
+              <?php if(get_field('pass')): ?>
+              <a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">
+                ZooPass<strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span>
+              </a><?php endif; ?>
+
               <?php endwhile; endif; wp_reset_postdata();?>
-
-              
-
+              <?php 
+                    $args = array(
+                        'category_name' => 'annonces',
+                        'post_type'=> 'billeterie',
+                        'post_status' => 'publish',
+                    );
+                    $requete = new WP_Query($args);
+                    
+                    if($requete->have_posts()): $requete->the_post(); ?>
               <?php if(get_field('conditions')): ?><p>*<small><?php the_field('conditions');?></small></p><?php endif;  ?>
-              
+                <?php endif; wp_reset_postdata();?>
               
           </div>
         </div>
@@ -110,7 +124,10 @@
         </div>
       </div>
     </div>
-    <?php if($image = get_field('banner_2')): ?><div class="parallax"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></div><?php endif;?>
+    <?php if($image = get_field('banner_2')): ?>
+    <div class="parallax">
+      <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+    </div><?php endif;?>
   </div>
 
   <div class="opening container">
@@ -153,7 +170,10 @@
         </div>
       </div>
     </div>
-    <?php if($image = get_field('banner_3')): ?><div class="parallax"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></div><?php endif;?>
+    <?php if($image = get_field('banner_3')): ?>
+    <div class="parallax">
+      <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+    </div><?php endif;?>
   </div>
 
 <?php  get_footer(); ?>

@@ -8,8 +8,8 @@
       
 
    // });
-    $('#test5').on('click',function(){
-      if($('#test5').prop('checked',true)){
+  $('#test5').on('click',function(){
+     if(document.getElementById('test5').checked){
           $('#icon_telephone').prop('disabled',false);
           $('#icon_telephone').val('');
 
@@ -21,15 +21,9 @@
       }
     });
  
-  }); // end of document ready
-  
-})(jQuery); // end of jQuery name space
-
-
 ////////
 
 //////Géolocalisation
-
 
 
 // VARIABLES
@@ -86,16 +80,17 @@ function CalculCoordo (crd){
 }
 
 
+$( document ).delegate("#archive-animaux-amp", "pagecreate", function() {
 
 
-$( document ).delegate("#listing", "pagecreate", function() {
-    ConnectionApiGares();
-    $('#rayon').on('change', function(){
-        rayon=$(this).val();
         CalculCoordo(crd);
-    })
+
 });
 
-$( document ).delegate("#accueil", "pagecreate", function() {
+$( document ).delegate("#archive-animaux-amp", "pagecreate", function() {
     Geolocalisation();
 });
+
+  }); // end of document ready
+  
+})(jQuery); // end of jQuery name space

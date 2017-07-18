@@ -4,7 +4,7 @@
         <section>
 
         <?php if(have_posts()): ?>
-        <p><?php echo $wp_query->found_posts; ?> résultats pour la recherche de <em>"<?php the_search_query(); ?>"</em></p>
+        <p><?php echo $wp_query->found_posts; ?><a href="#" class="material-icons">search</a><em>"<?php the_search_query(); ?>"</em></p>
             <ul>
             <?php while(have_posts()): the_post();?>
                 <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>

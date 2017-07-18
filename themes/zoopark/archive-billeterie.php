@@ -1,27 +1,41 @@
 <?php get_header();?>
 <!-- Billeterie-->
 	<div class="container">
-
-          <?php 
+        <h3 class="orange-text">Billeterie</h3>
+        <form action="">
+          <?php
                     $args = array(
-                        'category__not_in' => 'annonces',
-                        'post_type'=> 'billeterie',
-                        'post_status' => 'publish'
-                        
 
+                        'post_type'=> 'billeterie',
+                        'post_status' => 'publish'  
                     );
                     $requete = new WP_Query($args);
                     
                     if($requete->have_posts()): 
                      while($requete->have_posts()): $requete->the_post(); ?>
-                    <h3><?php the_title();?></h3>
-              <?php if(get_field('annonce')): ?><p><?php the_field('annonce');?></p><?php endif; ?>
-              <?php if(get_field('pass_1')): ?><a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass_1');?> </strong><span><?php the_field('prix_pass_1');?>€*</span></a><?php endif; ?>
-              <?php if(get_field('pass_2')): ?><a href="#" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">ZooPass<strong> <?php the_field('pass_2');?> </strong> <span><?php the_field('prix_pass_2');?>€*</span></a><?php endif; ?>
-              <?php if(get_field('conditions')): ?><p>*<small><?php the_field('conditions');?></small></p><?php endif; ?>
-              <?php wp_reset_postdata(); endwhile;
-		else: ?>
+                     
+                     <div class="row">
+                        <h4 class="col 6"><?php the_title();?></h4>
+                        <div class="col 6">
+                            <?php if(get_field('billet')): ?>
+                            <a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">
+                                <?php the_title();?><strong> <?php the_field('billet');?> </strong> <span><?php the_field('prix_billet');?>€*</span>
+                            </a><?php endif; ?>     
+                        </div>
+                        <div class="col 6">
+                            <?php if(get_field('pass')): ?>
+                            <a href="<?php the_permalink();?>" id="download-button" class="call-btn btn-large waves-effect waves-light brown lighten-1">
+                                <?php the_title();?><strong> <?php the_field('pass');?> </strong> <span><?php the_field('prix_du_pass');?>€*</span>
+                            </a><?php endif; ?>
+                        </div>
+                        <!--<div class="input-field col s4">
+                                <input type="number" class="bnPlace">
+                            </div>-->
+                    </div>
+                    
+              <?php wp_reset_postdata(); endwhile; else: ?>
 		<p>Il n'y a pas d'article pour le moment</p>
 		<?php endif;?>
-		</div>
+        </form>
+    </div>
 <?php get_footer();?>

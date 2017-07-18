@@ -12,14 +12,17 @@
                     
                     if($requete->have_posts()): 
                     while($requete->have_posts()): $requete->the_post(); ?>
-	  <?php if($image = get_field('flaticon_map')): ?><option value="" data-icon="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="left circle"><?php endif;?><?php the_title();?></option>
+	  <?php if($image = get_field('flaticon_map')): ?>
+    <option value="" data-icon="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="left circle">
+      <?php endif;?><?php the_title();?>
+    </option>
       <?php endwhile; endif;
     wp_reset_postdata();?>
     </select>
     <label>Images in select</label>
   </div>
 
-  <div class="mini-map section">
+  <div class="mini-map section" id="archive-animaux-map">
     <div class="container">
       <div class="row">
 		  <?php 
@@ -31,7 +34,11 @@
                     $requete = new WP_Query($args);
                     
                     if($requete->have_posts()): $requete->the_post(); ?>
-		<?php if($image = get_field('carte')): ?><div ><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></div><?php endif;?>
+		<?php if($image = get_field('carte')): ?>
+      <div >
+        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+      </div>
+      <?php endif;?>
 		<?php endif;?>
       </div>
     </div>
