@@ -10,13 +10,14 @@
    // });
   $('#test5').on('click',function(){
      if(document.getElementById('test5').checked){
-          $('#icon_telephone').prop('disabled',false);
+          $('#icon_telephone').prop('disabled',false).prop("required",true);
           $('#icon_telephone').val('');
 
           //console.log('hello');
       }
       else{
-        $('#icon_telephone').prop('disabled',true);
+        $('#icon_telephone').prop('disabled',true).prop("required",false);
+		$('#icon_telephone').val('');
        // console.log('bye');
       }
     });
@@ -27,16 +28,13 @@
 
 
 // VARIABLES
-//var rayon = 10;
-//var etat = "offline";
-//var idGare = "";
-
+var posLat = "";
+var posLong = "";
 var latMax = "50.472787";
 var latMin = "50.470010";
 var longMax = "4.470686";
 var longMin = "4.464793";
 var crd = "";
-
 
 //GEOLOC
 function Geolocalisation(){
@@ -44,8 +42,10 @@ function Geolocalisation(){
 	  	enableHighAccuracy: true,
 	  	timeout: 12000, //durée avant affichage d'erreur
 	  	maximumAge: 600 //Durée de mise en cache de la position
+		  
 		}
-	navigator.geolocation.getCurrentPosition(successGeo, errorGeo, optionsGeo);
+
+	navigator.geolocation.watchPosition(successGeo, errorGeo, optionsGeo);
 }
 function successGeo(pos) {
 			//alert("ok");
@@ -56,6 +56,7 @@ function successGeo(pos) {
 		  posLat = crd.latitude;
 		  posLong = crd.longitude;
           CalculCoordo(crd);
+
 		}
 
 function errorGeo(err) {
@@ -63,23 +64,39 @@ function errorGeo(err) {
 		  alert("Erreur de Géolocalisation : " + err.code + " "+err.message);
 		};
 
-function CalculCoordo (lat, long ){
+function CalculCoordo (){
 
 var ratioLong = longMax-longMin;
-var ratoiLat = latMin-latMax;
-var longStep1 = posLong-longMin;
+var ratioLat = latMax-latMin;
+var longStep1 = longMin-posLong;
 var longStep2 = longStep1/ratioLong;
-var long = longStep2*100;
+var longResult = longStep2*100;
 var latStep1 = posLat-latMin;
 var latStep2 = latStep1/ratioLat;
-var lat = latStep2*100;
+var latResult = latStep2*100;
 
-$('#self-position').css({'top': lat+'%', 'left': long+'%'});
+
+console.log(ratioLong);
+console.log('longStep1 : '+longStep1);
+console.log('longStep2 : '+longStep2);
+console.log('loatStep2 : '+latStep2);
+console.log('llatStep1 : '+latStep1);
+console.log('top : '+latResult);
+console.log('left : '+longResult);
+
+
+$('#self-position').css({'top': '-'+latResult+'%', 'left': longResult+'%'});
+
 }
-
+/*
+function ChooseYourAnimal (){
+	if($('.option_animal_map').val() !=''){
+		
+	}
+}
+*/
 
 Geolocalisation();
-CalculCoordo(crd);
 
 
   }); // end of document ready

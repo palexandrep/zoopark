@@ -26,15 +26,11 @@
   $last_name = $_POST['last_name'];
   $email = $_POST['email'];
   $date = $_POST['date'];
+  $icon_telephone = (isset($_POST['icon_telephone'])) ? $_POST['icon_telephone'] : 'pas de numéro de téléphone à afficher.';
 
   //$mailInfos =  $message . 'vous pouvez le contacterLa date choisie est la suivante :' . $date;
   
-  if(empty($icon_telephone)){
-          $icon_telephone = 'pas de numéro de téléphone à afficher.';
-      }
-  else{
-    $icon_telephone = $_POST['icon_telephone'];
-  }
+
 
   $message = $last_name . ' ' . $first_name . ' vous a envoyé le message suivant : ' . $_POST['textarea1'] .' La date choisie est la suivante :' . $date . '. ' . "Vous pouvez le contacter à l'adresse suivante: " . $email . ' ou par téléphone au: ' . $icon_telephone;
 
@@ -129,7 +125,7 @@
         <div class="row">
           <div class="input-field col s12">
             <textarea id="textarea1" class="materialize-textarea" name="textarea1" ><?php echo esc_textarea($_POST['textarea1']); ?></textarea>
-            <label for="textarea1">Textarea</label>
+            <label for="textarea1">Votre message</label>
           </div>
         </div>
         <div class="row">
