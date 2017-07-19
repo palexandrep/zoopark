@@ -16,11 +16,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     height: 14px;
     background-color: green;
     border-radius: 50px;
-    position: relative;
+    position: absolute;
     z-index: 2;
     transform-origin: center;
 }
 
 .animal{
     width: 50%;
+}
+.map_container{
+    position: relative;
 }

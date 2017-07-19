@@ -55,6 +55,9 @@ function successGeo(pos) {
 		  console.log('Longitude: ' + crd.longitude);
 		  posLat = crd.latitude;
 		  posLong = crd.longitude;
+		  //simulation Dev
+		  //posLat = "50.470671";
+		  //posLong = "4.468767";
           CalculCoordo(crd);
 
 		}
@@ -66,38 +69,46 @@ function errorGeo(err) {
 
 function CalculCoordo (){
 
-var ratioLong = longMax-longMin;
-var ratioLat = latMax-latMin;
-var longStep1 = longMin-posLong;
-var longStep2 = longStep1/ratioLong;
-var longResult = longStep2*100;
-var latStep1 = posLat-latMin;
-var latStep2 = latStep1/ratioLat;
-var latResult = latStep2*100;
+	var ratioLong = longMax-longMin;
+	var ratioLat = latMax-latMin;
+
+	var longStep1 = posLong-longMin;
+	var longStep2 = longStep1/ratioLong;
+	var longResult = longStep2*100;
+
+	var latStep1 = latMax - posLat;
+	var latStep2 = latStep1/ratioLat;
+	var latResult = latStep2*100;
 
 
-console.log(ratioLong);
-console.log('longStep1 : '+longStep1);
-console.log('longStep2 : '+longStep2);
-console.log('loatStep2 : '+latStep2);
-console.log('llatStep1 : '+latStep1);
-console.log('top : '+latResult);
-console.log('left : '+longResult);
+	console.log(ratioLong);
+	console.log('longStep1 : '+longStep1);
+	console.log('longStep2 : '+longStep2);
+	console.log('loatStep2 : '+latStep2);
+	console.log('llatStep1 : '+latStep1);
+	console.log('top : '+latResult);
+	console.log('left : '+longResult);
 
 
-$('#self-position').css({'top': '-'+latResult+'%', 'left': longResult+'%'});
+	$('#self-position').css({'top' : latResult + '%', 'left' : longResult + '%' });
 
 }
-/*
-function ChooseYourAnimal (){
+
+function ChooseYourAnimal(){
 	if($('.option_animal_map').val() !=''){
-		
+		$('.select-dropdown').on('click',function(){
+			 animal = $('this').data('target');
+			 animalLong = animal.data('long');
+			 animalLat = animal.data('lat');
+
+			$(animal).css({'top' : animalLat + '%', 'left' : animalLong + '%' });
+		});
 	}
 }
-*/
+
 
 Geolocalisation();
-
+ChooseYourAnimal();
 
   }); // end of document ready
   
