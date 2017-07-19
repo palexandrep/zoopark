@@ -30,13 +30,13 @@
 //var rayon = 10;
 //var etat = "offline";
 //var idGare = "";
-var posLat = "";
-var posLong = "";
-var latMax = "";
-var latMin = "";
-var longMax = "";
-var longMin = "";
+
+var latMax = "50.472787";
+var latMin = "50.470010";
+var longMax = "4.470686";
+var longMin = "4.464793";
 var crd = "";
+
 
 //GEOLOC
 function Geolocalisation(){
@@ -63,29 +63,23 @@ function errorGeo(err) {
 		  alert("Erreur de Géolocalisation : " + err.code + " "+err.message);
 		};
 
-function CalculCoordo (crd){
-	//Calcul rayon 5 kms	 
-		  
-		//lat 1° => 111km  donc 5kms représentent 1/111*5 degrés;
-		var ratio_lat = 1/111*rayon;
-		latMin = crd.latitude - ratio_lat;
-		latMax = crd.latitude + ratio_lat;
-		console.log("lat : "+latMin+"/"+latMax);
-		//long 1° = 5*111*Math.cos(lat_actuelle);
-		var ratio_long = rayon/111*Math.cos(crd.latitude);
-		longMin = crd.longitude - ratio_long;
-		longMax = crd.longitude + ratio_long;
-		console.log("long : "+longMin+"/"+longMax);
+function CalculCoordo (lat, long ){
 
+var ratioLong = longMax-longMin;
+var ratoiLat = latMin-latMax;
+var longStep1 = posLong-longMin;
+var longStep2 = longStep1/ratioLong;
+var long = longStep2*100;
+var latStep1 = posLat-latMin;
+var latStep2 = latStep1/ratioLat;
+var lat = latStep2*100;
+
+$('#self-position').css({'top': lat+'%', 'left': long+'%'});
 }
 
 
-$( document ).delegate("#archive-animaux-map", "pagecreate", function() {
-
-		Geolocalisation();
-        CalculCoordo(crd);
-
-});
+Geolocalisation();
+CalculCoordo(crd);
 
 
   }); // end of document ready

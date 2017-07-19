@@ -15,7 +15,7 @@
 					
 					<div class="col 6">
 						<?php if(get_field('resume')): ?><h4><?php the_field('resume');?></h4><?php endif; ?>
-						<?php the_content();?>
+						<?php the_excerpt();?>
 					</div>
 					<div class="col 6"> 
 						<?php if($image = get_field('image_animal')): ?>
